@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.nexteer.member">
+	<select id="getMemberIndex" resultType="Integer">
+		select IFNULL(max(member_index),0)+1
+		  from member
+	</select>
+	
+	<insert id="registerMember">
+		insert into member(member_index, member_id, member_pwd, member_name, member_phone, member_mobile, member_email, member_position, member_authority, member_register_date)
+		values (#{member_index}, #{member_id}, #{member_pwd}, #{member_name}, #{member_phone}, #{member_mobile}, #{member_email}, #{member_position}, #{member_authority}, now())
+	</insert>
+	
+	<select id="getMemberList" resultType="kr.co.nexteer.domain.MemberVO">
+		select member_index, member_id, member_pwd, member_name, member_phone,
+			   member_mobile, member_email, member_position, member_authority
+		  from member
+		 where member_delete_date is null
+		 order by member_index
+	</select>
+	
+	<select id="getMember" parameterType="Integer" resultType="kr.co.nexteer.domain.MemberVO">
+		select member_index, member_id, member_pwd, member_name, member_phone,
+			   member_mobile, member_email, member_position, member_authority
+		  from member
+		 where member_index = #{member_index}
+	</select>
+	
+	<select id="selectIdCount" parameterType="String" resultType="Integer">
+		select count(*) from member where member_id = #{member_id}
+	</select>
+	
+	<select id="getMemberById" parameterType="String" resultType="kr.co.nexteer.domain.MemberVO">
+		select * from member where member_id = #{member_id} and member_delete_date is null
+	</select>
+	
+	<select id="getMemberByIdPwd" resultType="kr.co.nexteer.domain.MemberVO">
+		select * from member where member_id = #{member_id} and member_pwd = #{member_pwd} and member_delete_date is null
+	</select>
+		
+	<update id="updateMember">
+		update member
+		   set member_name = #{member_name}, member_pwd = #{member_pwd}, member_phone = #{member_phone},
+			   member_mobile = #{member_mobile}, member_email = #{member_email}, member_position = #{member_position},
+			   member_authority = #{member_authority}, member_modify_date = now()
+		 where member_index = #{member_index}
+	</update>
+	
+	<update id="deleteMember" parameterType="Integer">
+		update member set member_delete_date = now()
+		 where member_index = #{member_index}
+	</update>
+</mapper>

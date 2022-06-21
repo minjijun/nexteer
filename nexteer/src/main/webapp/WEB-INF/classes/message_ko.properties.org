@@ -1,0 +1,2 @@
+error.login.id=회원 아이디가 존재하지 않습니다.
+error.login.pwd=비밀번호가 일치하지 않습니다.
