@@ -7,21 +7,26 @@
 		  from company
 	</select>
 	
+	<select id="getCompanyCount" parameterType="String" resultType="Integer">
+		select count(*)
+		  from company
+		 where company_business_number = #{company_business_number}
+	</select>
+	
 	<insert id="registerCompany">
 		insert into company(company_index, company_name, company_president, company_business_number, company_region, company_location, company_website, company_phone, company_fax, company_email, member_index, company_register_date)
 		values (#{company_index}, #{company_name}, #{company_president}, #{company_business_number}, #{company_region}, #{company_location}, #{company_website}, #{company_phone}, #{company_fax}, #{company_email}, #{member_index}, now())
 	</insert>
 	
 	<select id="getCompanyList" resultType="kr.co.nexteer.domain.CompanyVO">
-		select company_index, company_name, company_business_number
+		select *
 		  from company
 		 where company_delete_date is null
 		 order by company_index
 	</select>
 	
 	<select id="getCompany" parameterType="Integer" resultType="kr.co.nexteer.domain.CompanyVO">
-		select company_index, company_name, company_president, company_business_number, company_region,
-			   company_location, company_website, company_phone, company_fax, company_email, member_index
+		select *
 		  from company
 		 where company_index = #{company_index}
 	</select>

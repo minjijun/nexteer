@@ -12,11 +12,11 @@
 
 <div class="starter-template" role="main">
 	<div class="card">
-		<div class="card-header">회사 목록</div>
+		<div class="card-header">회사목록조회</div>
 		<div class="card-body">
 			<div class="table-responsive">
 				<table class="table table-striped table-sm caption-top-right">
-					<caption>List of users</caption>
+					<caption>List of companies</caption>
 					<colgroup>
 						<col style="width:auto" />
 						<col style="width:auto" />

@@ -1,43 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="position-sticky pt-3 flex-shrink-0 p-3 bg-white">
-    <ul class="list-unstyled ps-0">
-      <li class="mb-1">
-        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          고객관리
-        </button>
-        <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(전체)</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(제안서)</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(견적서)</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(대표님)</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1">
-        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          회사관리
-        </button>
-        <div class="collapse" id="dashboard-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="registerCompany" class="link-dark d-inline-flex text-decoration-none rounded">회사등록</a></li>
-            <li><a href="getCompanyList" class="link-dark d-inline-flex text-decoration-none rounded">회사목록조회</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="border-top my-3"></li>
-      <li class="mb-1">
-        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-          직원관리
-        </button>
-        <div class="collapse" id="account-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a class="link-dark d-inline-flex text-decoration-none rounded" href="registerMember">직원등록</a></li>
-            <li><a class="link-dark d-inline-flex text-decoration-none rounded" href="getMemberList">직원목록조회</a></li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
+<div class="position-sticky pt-3 flex-shrink-0 p-3">
+	<ul class="list-unstyled ps-0">
+		<li class="mb-1">
+			<button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">고객관리</button>
+			<div class="collapse show" id="home-collapse">
+				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+					<li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(전체)</a></li>
+					<li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(제안서)</a></li>
+					<li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(견적서)</a></li>
+					<li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(대표님)</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="mb-1">
+			<button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">회사관리</button>
+			<div class="collapse show" id="dashboard-collapse">
+				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+					<li><a href="${pageContext.request.contextPath}/company/registerCompany" class="link-dark d-inline-flex text-decoration-none rounded">회사등록</a></li>
+					<li><a href="${pageContext.request.contextPath}/company/getCompanyList" class="link-dark d-inline-flex text-decoration-none rounded">회사목록조회</a></li>
+					<li><a href="/excel/downloadExcelFile" class="link-dark d-inline-flex text-decoration-none rounded">엑셀업로드다운로드</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="border-top my-3"></li>
+		<li class="mb-1">
+			<button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">직원관리</button>
+			<div class="collapse show" id="account-collapse">
+		        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+					<li><a href="${pageContext.request.contextPath}/member/registerMember" class="link-dark d-inline-flex text-decoration-none rounded">직원등록</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/getMemberList" class="link-dark d-inline-flex text-decoration-none rounded">직원목록조회</a></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</div>

@@ -24,6 +24,11 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public Integer getIdCount(String member_id) {
+		return sqlSession.selectOne(nameSpace+"getIdCount", member_id);
+	}
+	
+	@Override
 	public void registerMember(MemberVO memberVO) {
 		sqlSession.insert(nameSpace+"registerMember", memberVO);
 	}
@@ -46,11 +51,6 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberVO getMemberByIdPwd(MemberVO memberVO) {
 		return sqlSession.selectOne(nameSpace+"getMemberByIdPwd", memberVO);
-	}
-
-	@Override
-	public Integer selectIdCount(String id) {
-		return sqlSession.selectOne(nameSpace+"selectIdCount", id);
 	}
 
 	@Override

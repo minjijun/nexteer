@@ -23,6 +23,11 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@Override
+	public Integer getCompanyCount(String company_business_number) {
+		return sqlSession.selectOne(nameSpace+"getCompanyCount", company_business_number);
+	}
+
+	@Override
 	public void registerCompany(CompanyVO companyVO) {
 		sqlSession.insert(nameSpace+"registerCompany", companyVO);
 	}

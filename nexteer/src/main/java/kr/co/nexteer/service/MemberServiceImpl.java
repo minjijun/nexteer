@@ -20,6 +20,11 @@ public class MemberServiceImpl implements MemberService {
 	public Integer getMemberIndex() {
 		return memberDAO.getMemberIndex();
 	}
+	
+	@Override
+	public Integer getIdCount(String member_id) {
+		return memberDAO.getIdCount(member_id);
+	}
 
 	@Override
 	public void registerMember(MemberVO memberVO) {
@@ -44,11 +49,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO getMemberByIdPwd(MemberVO memberVO) {
 		return memberDAO.getMemberByIdPwd(memberVO);
-	}
-
-	@Override
-	public Integer selectIdCount(String id) {
-		return memberDAO.selectIdCount(id);
 	}
 
 	@Override

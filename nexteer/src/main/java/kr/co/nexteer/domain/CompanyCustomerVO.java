@@ -13,6 +13,8 @@ public class CompanyCustomerVO {
 	private Timestamp company_customer_register_date;
 	private Timestamp company_customer_modify_date;
 	private Timestamp company_customer_delete_date;
+	private String company_name;
+	private String company_business_number;
 	
 	public Integer getCompany_customer_index() {
 		return company_customer_index;
@@ -73,5 +75,17 @@ public class CompanyCustomerVO {
 	}
 	public void setCompany_customer_delete_date(Timestamp company_customer_delete_date) {
 		this.company_customer_delete_date = company_customer_delete_date;
+	}
+	public String getCompany_name() {
+		return company_name;
+	}
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
+	}
+	public String getCompany_business_number() {
+		return company_business_number;
+	}
+	public void setCompany_business_number(String company_business_number) {
+		this.company_business_number = company_business_number;
 	}
 }

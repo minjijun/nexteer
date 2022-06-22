@@ -6,6 +6,7 @@ import kr.co.nexteer.domain.CompanyVO;
 
 public interface CompanyService {
 	public Integer getCompanyIndex();
+	public Integer getCompanyCount(String company_business_number);
 	public void registerCompany(CompanyVO companyVO);
 	public List<CompanyVO> getCompanyList();
 	public CompanyVO getCompany(Integer company_index);

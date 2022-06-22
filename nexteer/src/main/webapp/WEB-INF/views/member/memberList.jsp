@@ -12,7 +12,7 @@
 
 <div class="starter-template" role="main">
 	<div class="card">
-		<div class="card-header">직원 목록</div>
+		<div class="card-header">직원목록조회</div>
 		<div class="card-body">
 			<div class="table-responsive">
 				<table class="table table-striped table-sm caption-top-right">

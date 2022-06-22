@@ -21,6 +21,11 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
+	public Integer getCompanyCount(String company_business_number) {
+		return companyDAO.getCompanyCount(company_business_number);
+	}
+
+	@Override
 	public void registerCompany(CompanyVO companyVO) {
 		companyDAO.registerCompany(companyVO);
 	}

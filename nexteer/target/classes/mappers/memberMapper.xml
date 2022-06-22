@@ -7,6 +7,12 @@
 		  from member
 	</select>
 	
+	<select id="getIdCount" parameterType="String" resultType="Integer">
+		select count(*)
+		  from member
+		 where member_id = #{member_id}
+	</select>
+	
 	<insert id="registerMember">
 		insert into member(member_index, member_id, member_pwd, member_name, member_phone, member_mobile, member_email, member_position, member_authority, member_register_date)
 		values (#{member_index}, #{member_id}, #{member_pwd}, #{member_name}, #{member_phone}, #{member_mobile}, #{member_email}, #{member_position}, #{member_authority}, now())
@@ -25,10 +31,6 @@
 			   member_mobile, member_email, member_position, member_authority
 		  from member
 		 where member_index = #{member_index}
-	</select>
-	
-	<select id="selectIdCount" parameterType="String" resultType="Integer">
-		select count(*) from member where member_id = #{member_id}
 	</select>
 	
 	<select id="getMemberById" parameterType="String" resultType="kr.co.nexteer.domain.MemberVO">

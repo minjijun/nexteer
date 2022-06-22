@@ -12,8 +12,9 @@
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	
-	<!-- Bootstrap CSS : Signin -->
+	<!-- Bootstrap CSS : sidebars, dashboard -->
  	<link rel="stylesheet" href="/nexteer/resources/css/sidebars.css" type="text/css">
+ 	<link rel="stylesheet" href="/nexteer/resources/css/dashboard.css" type="text/css">
  		
 	<style>
 	.bd-placeholder-img {
@@ -73,9 +74,10 @@
 </head>
 <body>
 	<!-- Header -->
-	<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+	<header class="navbar navbar-dark sticky-top bg-success flex-md-nowrap p-0 shadow">
 		<jsp:include page="index_header.jsp"/>
 	</header>
+	
 	<!-- Main -->
 	<div class="container-fluid">
 		<div class="row">

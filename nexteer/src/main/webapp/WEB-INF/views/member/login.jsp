@@ -13,7 +13,7 @@
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		
-			 	<style>
+		<style>
 			.bd-placeholder-img {
 			  font-size: 1.125rem;
 			  text-anchor: middle;
@@ -76,10 +76,11 @@
 	</head>
 	<body class="text-center">
 		<main class="form-signin w-100 m-auto">
+		
 			<!-- login Form {s} -->
 			<form:form method="post" modelAttribute="memberVO" action="${pageContext.request.contextPath}/login">
 				<img class="mb-4" src="/nexteer/resources/image/logo.png" alt="" weight="166" height="39">
-				<h1 class="h3 mb-3 fw-normal">로그인 하세요.</h1>
+				<h1 class="h5 mb-3 fw-normal">로그인 하세요.</h1>
 				<p>
 					<font color="#ed1d24">
 						<spring:hasBindErrors name="memberVO">
@@ -98,10 +99,10 @@
 					<label for="floatingPassword">Password</label>
 				</div>
 				
-				<button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
-				<p class="mt-5 mb-3 text-muted">@ 2022</p>
+				<button class="w-100 btn btn-md btn-success" type="submit">로그인</button>
+				<p class="mt-5 mb-3 text-muted">Copyright © Since 2002 NEXTEER All Rights Reserved.</p>
 			</form:form>
-		<!-- login Form {e} -->		
+			<!-- login Form {e} -->		
 		
 		</main>
 	</body>
