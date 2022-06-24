@@ -6,9 +6,10 @@ public class CompanyCustomerVO {
 	private Integer company_customer_index;
 	private Integer company_index;
 	private String company_customer_name;
+	private String company_customer_position;
 	private String company_customer_phone;
 	private String company_customer_email;
-	private String company_customer_status;
+	private String company_customer_status = "재직";
 	private Integer member_index;
 	private Timestamp company_customer_register_date;
 	private Timestamp company_customer_modify_date;
@@ -33,6 +34,12 @@ public class CompanyCustomerVO {
 	}
 	public void setCompany_customer_name(String company_customer_name) {
 		this.company_customer_name = company_customer_name;
+	}
+	public String getCompany_customer_position() {
+		return company_customer_position;
+	}
+	public void setCompany_customer_position(String company_customer_position) {
+		this.company_customer_position = company_customer_position;
 	}
 	public String getCompany_customer_phone() {
 		return company_customer_phone;

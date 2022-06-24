@@ -24,10 +24,20 @@ public class CompanyServiceImpl implements CompanyService {
 	public Integer getCompanyCount(String company_business_number) {
 		return companyDAO.getCompanyCount(company_business_number);
 	}
+	
+	@Override
+	public Integer getCompanytIndexByBusinessNumber(String company_business_number) {
+		return companyDAO.getCompanytIndexByBusinessNumber(company_business_number);
+	}
 
 	@Override
 	public void registerCompany(CompanyVO companyVO) {
 		companyDAO.registerCompany(companyVO);
+	}
+
+	@Override
+	public void registerCompanies(List<CompanyVO> listCompanyVO) {
+		companyDAO.registerCompanies(listCompanyVO);
 	}
 
 	@Override

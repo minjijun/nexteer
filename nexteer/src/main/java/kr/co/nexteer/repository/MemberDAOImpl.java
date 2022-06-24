@@ -24,6 +24,13 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public Integer getMemberIndexByMemberName(String member_name) {
+		return sqlSession.selectOne(nameSpace+"getMemberIndexByMemberName", member_name);
+	}
+
+
+
+	@Override
 	public Integer getIdCount(String member_id) {
 		return sqlSession.selectOne(nameSpace+"getIdCount", member_id);
 	}

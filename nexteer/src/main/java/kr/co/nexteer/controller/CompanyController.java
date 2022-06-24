@@ -38,7 +38,7 @@ public class CompanyController {
 	 */
 	@RequestMapping(value="/company/checkBusinessNumber", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> checkId(String company_business_number) {
+	public Map<String, Object> checkBusinessNumber(String company_business_number) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
 			Integer cnt = companyService.getCompanyCount(company_business_number); //DB에서 사업자등록번호 검색

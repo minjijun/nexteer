@@ -81,7 +81,7 @@ public class MemberController {
 	/**
 	 * registerMember.jsp에서 아이디 중복검사 버튼 클릭
 	 */
-	@RequestMapping(value="/checkId", method=RequestMethod.POST)
+	@RequestMapping(value="/member/checkId", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> checkId(String member_id) {
 		System.out.println("checkId");

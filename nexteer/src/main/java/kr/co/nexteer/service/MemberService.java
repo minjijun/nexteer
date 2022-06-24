@@ -7,6 +7,7 @@ import kr.co.nexteer.domain.MemberVO;
 public interface MemberService {
 	public Integer getMemberIndex();
 	public Integer getIdCount(String id);
+	public Integer getMemberIndexByMemberName(String member_name);
 	public void registerMember(MemberVO memberVO);
 	public List<MemberVO> getMemberList();
 	public MemberVO getMember(Integer member_index);

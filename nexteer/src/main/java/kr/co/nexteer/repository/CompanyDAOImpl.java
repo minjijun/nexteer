@@ -28,8 +28,18 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@Override
+	public Integer getCompanytIndexByBusinessNumber(String company_business_number) {
+		return sqlSession.selectOne(nameSpace+"getCompanytIndexByBusinessNumber", company_business_number);
+	}
+
+	@Override
 	public void registerCompany(CompanyVO companyVO) {
 		sqlSession.insert(nameSpace+"registerCompany", companyVO);
+	}
+	
+	@Override
+	public void registerCompanies(List<CompanyVO> listCompanyVO) {
+		sqlSession.insert(nameSpace+"registerCompanies", listCompanyVO);
 	}
 
 	@Override

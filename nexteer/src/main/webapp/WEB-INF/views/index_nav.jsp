@@ -20,7 +20,7 @@
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 					<li><a href="${pageContext.request.contextPath}/company/registerCompany" class="link-dark d-inline-flex text-decoration-none rounded">회사등록</a></li>
 					<li><a href="${pageContext.request.contextPath}/company/getCompanyList" class="link-dark d-inline-flex text-decoration-none rounded">회사목록조회</a></li>
-					<li><a href="/excel/downloadExcelFile" class="link-dark d-inline-flex text-decoration-none rounded">엑셀업로드다운로드</a></li>
+					<li><a href="${pageContext.request.contextPath}/excel/downloadExcelFile1" class="link-dark d-inline-flex text-decoration-none rounded">엑셀업로드다운로드</a></li>
 				</ul>
 			</div>
 		</li>

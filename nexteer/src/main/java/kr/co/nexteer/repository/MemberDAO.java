@@ -6,6 +6,7 @@ import kr.co.nexteer.domain.MemberVO;
 
 public interface MemberDAO {
 	public Integer getMemberIndex();
+	public Integer getMemberIndexByMemberName(String member_name);
 	public Integer getIdCount(String member_id);
 	public void registerMember(MemberVO memberVO);
 	public List<MemberVO> getMemberList();

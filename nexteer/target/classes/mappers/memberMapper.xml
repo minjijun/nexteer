@@ -7,6 +7,13 @@
 		  from member
 	</select>
 	
+	<select id="getMemberIndexByMemberName" parameterType="String" resultType="Integer">
+		select member_index
+		  from member
+		 where member_name = #{member_name}
+		   and member_delete_date is null
+	</select>
+	
 	<select id="getIdCount" parameterType="String" resultType="Integer">
 		select count(*)
 		  from member

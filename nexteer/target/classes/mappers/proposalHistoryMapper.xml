@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.nexteer.proposalHistory">
+	<select id="getProposalHistoryIndex" resultType="Integer">
+		select IFNULL(max(proposal_history_index),0)+1
+		  from proposal_history
+	</select>
+	
+	<insert id="registerProposalHistory">
+		insert into company(company_index, company_name, company_president, company_business_number, company_region, company_location, company_website, company_phone, company_fax, company_email, member_index, company_register_date)
+		values (#{company_index}, #{company_name}, #{company_president}, #{company_business_number}, #{company_region}, #{company_location}, #{company_website}, #{company_phone}, #{company_fax}, #{company_email}, #{member_index}, now())
+	</insert>
+	
+	<insert id="registerProposalHistories" parameterType="java.util.List">
+		insert into proposal_history(proposal_history_index, proposal_history_suggested_product, company_customer_index, member_index, proposal_history_job, proposal_history_job_date, proposal_history_register_date)
+		values
+			<foreach item="item" index="index" collection="list" separator=",">
+			    (#{item.proposal_history_index}, #{item.proposal_history_suggested_product}, #{item.company_customer_index}, #{item.member_index}, #{item.proposal_history_job}, #{item.proposal_history_job_date}, now())       
+			</foreach>
+	</insert>
+
+	<select id="getProposalHistoryList" resultType="kr.co.nexteer.domain.ProposalHistoryVO">
+		select *
+		  from proposal_history
+	</select>
+	
+	<select id="getProposalHistory" parameterType="Integer" resultType="kr.co.nexteer.domain.ProposalHistoryVO">
+		select *
+		  from proposal_history
+		 where proposal_history_index = #{proposal_history_index}
+	</select>
+</mapper>

@@ -20,7 +20,13 @@ public class MemberServiceImpl implements MemberService {
 	public Integer getMemberIndex() {
 		return memberDAO.getMemberIndex();
 	}
-	
+
+	@Override
+	public Integer getMemberIndexByMemberName(String member_name) {
+		return memberDAO.getMemberIndexByMemberName(member_name);
+	}
+
+
 	@Override
 	public Integer getIdCount(String member_id) {
 		return memberDAO.getIdCount(member_id);

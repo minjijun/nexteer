@@ -7,7 +7,7 @@ public class CalllogVO {
 	private Integer company_index;
 	private Integer member_index;
 	private Integer company_customer_index;
-	private Timestamp calllog_call_date;
+	private String calllog_call_date;
 	private String calllog_call_contents;
 	private Timestamp calllog_register_date;
 	private Timestamp calllog_modify_date;
@@ -35,10 +35,10 @@ public class CalllogVO {
 	public void setCompany_customer_index(Integer company_customer_index) {
 		this.company_customer_index = company_customer_index;
 	}
-	public Timestamp getCalllog_call_date() {
+	public String getCalllog_call_date() {
 		return calllog_call_date;
 	}
-	public void setCalllog_call_date(Timestamp calllog_call_date) {
+	public void setCalllog_call_date(String calllog_call_date) {
 		this.calllog_call_date = calllog_call_date;
 	}
 	public String getCalllog_call_contents() {

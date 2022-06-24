@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url var="getIdURL" value="/checkId"></c:url>
+<c:url var="getIdURL" value="/member/checkId"></c:url>
 
 <article>
    	<div class="container col-md-12" role="main">
@@ -16,7 +16,7 @@
     		<div class="card-body">
     		
     			<!-- Register Member {s} -->
-      			<form:form class="form-signup" name="form" id="form" role="form" method="post" modelAttribute="memberVO" onSubmit="return validate(this)" action="${pageContext.request.contextPath}/member/register">
+      			<form:form class="form-signup" name="form" id="form" role="form" method="post" modelAttribute="memberVO" onSubmit="return validate(this)" action="${pageContext.request.contextPath}/member/registerMember">
 					<input type="hidden" id="checkedId" value="False"/>
 					    				
           			<div class="form-group row mb-3">
@@ -143,13 +143,13 @@
 				console.log(result);
 				if(result.status == "Ture") {
 					if(result.dup == "NO") {
-						if(!confirm(id + "는 사용 가능합니다.\n사용하시겠습니까?")) return false;
+						if(!confirm(member_id + "는 사용 가능합니다.\n사용하시겠습니까?")) return false;
 						$("#checkedId").val("Ture");
 						$("#member_id").attr("readonly", true);								
 					}
 				} else {
 					if (result.dup == "YES"){
-						alert(id + "는 이미 사용 중입니다.");
+						alert(member_id + "는 이미 사용 중입니다.");
 						$("#member_id").val('');
 					} else {
 						alert("중복검사에 실패했습니다. 관리자에게 문의하세요.");
@@ -167,7 +167,6 @@
 	
 	//폼 체크
 	function validate(f) {
-		alert("f.checkedId.value:"+f.checkedId.value);
 		if(f.checkedId.value == 'False' || f.checkedId.value == '') {
 			alert("아이디 중복검사를 하세요.");
 			return false;

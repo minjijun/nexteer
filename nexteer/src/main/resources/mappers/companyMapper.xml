@@ -13,11 +13,28 @@
 		 where company_business_number = #{company_business_number}
 	</select>
 	
+	<select id="getCompanytIndexByBusinessNumber" parameterType="String" resultType="Integer">
+		select company_index
+		  from company
+		 where company_business_number = #{company_business_number}
+	</select>
+	
 	<insert id="registerCompany">
 		insert into company(company_index, company_name, company_president, company_business_number, company_region, company_location, company_website, company_phone, company_fax, company_email, member_index, company_register_date)
 		values (#{company_index}, #{company_name}, #{company_president}, #{company_business_number}, #{company_region}, #{company_location}, #{company_website}, #{company_phone}, #{company_fax}, #{company_email}, #{member_index}, now())
 	</insert>
 	
+	<insert id="registerCompanies" parameterType="java.util.List">
+		insert into company(company_index, company_name, company_business_number, company_region, company_location, company_phone, company_email, company_register_date)
+		values
+			<foreach item="item" index="index" collection="list" separator=",">
+			    (#{item.company_index}, #{item.company_name}, #{item.company_business_number}, #{item.company_region}, #{item.company_location}, #{item.company_phone}, #{item.company_email}, now())       
+			</foreach>
+		ON DUPLICATE KEY UPDATE <!-- PK가 중복이면 UPDATE -->
+			company_name = values(company_name), company_region = values(company_region), company_location = values(company_location), 
+			company_phone = values(company_phone), company_email = values(company_email), company_modify_date = now(), company_delete_date = null
+	</insert>
+
 	<select id="getCompanyList" resultType="kr.co.nexteer.domain.CompanyVO">
 		select *
 		  from company

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.nexteer.companyCustomer">
+	<select id="getCompanyCustomerIndex" resultType="Integer">
+		select IFNULL(max(company_customer_index),0)+1
+		  from company_customer
+	</select>
+	
+	<select id="getCompanyCount" parameterType="String" resultType="Integer">
+		select count(*)
+		  from company_customer
+		 where company_business_number = #{company_business_number}
+	</select>
+	
+	<select id="geCompanytIndexByBusinessNumber" parameterType="String" resultType="Integer">
+		select company_index
+		  from company
+		 where company_business_number = #{company_business_number}
+	</select>
+	
+	<insert id="registerCompany">
+		insert into company(company_index, company_name, company_president, company_business_number, company_region, company_location, company_website, company_phone, company_fax, company_email, member_index, company_register_date)
+		values (#{company_index}, #{company_name}, #{company_president}, #{company_business_number}, #{company_region}, #{company_location}, #{company_website}, #{company_phone}, #{company_fax}, #{company_email}, #{member_index}, now())
+	</insert>
+	
+	<insert id="registerCompanyCustomers" parameterType="java.util.List">
+		insert into company_customer(company_customer_index, company_index, company_customer_name, company_customer_position, company_customer_phone, company_customer_email, company_customer_status, member_index, company_customer_register_date)
+		values
+			<foreach item="item" index="index" collection="list" separator=",">
+			    (#{item.company_customer_index}, #{item.company_index}, #{item.company_customer_name}, #{item.company_customer_position}, #{item.company_customer_phone}, #{item.company_customer_email}, #{item.company_customer_status}, #{item.member_index}, now())       
+			</foreach>
+		ON DUPLICATE KEY UPDATE <!-- PK가 중복이면 UPDATE -->
+			company_index = values(company_index), company_customer_name = values(company_customer_name), company_customer_position = values(company_customer_position), company_customer_phone = values(company_customer_phone), 
+			company_customer_email = values(company_customer_email), company_customer_status = values(company_customer_status), company_customer_modify_date = now(), company_customer_delete_date = null
+	</insert>
+
+	<select id="getCompanyList" resultType="kr.co.nexteer.domain.CompanyVO">
+		select *
+		  from company
+		 where company_delete_date is null
+		 order by company_index
+	</select>
+	
+	<select id="getCompany" parameterType="Integer" resultType="kr.co.nexteer.domain.CompanyVO">
+		select *
+		  from company
+		 where company_index = #{company_index}
+	</select>
+		
+	<update id="updateCompany">
+		update company
+		   set company_name = #{company_name}, company_president = #{company_president}, company_business_number = #{company_business_number},
+			   company_region = #{company_region}, company_location = #{company_location}, company_website = #{company_website},
+			   company_phone = #{company_phone}, company_fax = #{company_fax}, company_email = #{company_email},
+			   member_index = #{member_index}, company_modify_date = now()
+		 where company_index = #{company_index}
+	</update>
+	
+	<update id="deleteCompany" parameterType="Integer">
+		update company
+		   set company_delete_date = now()
+		 where company_index = #{company_index}
+	</update>
+</mapper>
