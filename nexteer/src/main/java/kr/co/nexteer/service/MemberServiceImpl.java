@@ -15,7 +15,6 @@ public class MemberServiceImpl implements MemberService {
 	@Inject
 	private MemberDAO memberDAO;
 	
-	
 	@Override
 	public Integer getMemberIndex() {
 		return memberDAO.getMemberIndex();

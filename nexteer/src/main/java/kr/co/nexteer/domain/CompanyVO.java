@@ -1,6 +1,6 @@
 package kr.co.nexteer.domain;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class CompanyVO {
 	private Integer company_index;
@@ -14,9 +14,9 @@ public class CompanyVO {
 	private String company_fax;
 	private String company_email;
 	private Integer member_index;
-	private Timestamp company_register_date;
-	private Timestamp company_modify_date;
-	private Timestamp company_delete_date;
+	private LocalDateTime company_register_date;
+	private LocalDateTime company_modify_date;
+	private LocalDateTime company_delete_date;
 	
 	public Integer getCompany_index() {
 		return company_index;
@@ -84,22 +84,22 @@ public class CompanyVO {
 	public void setMember_index(Integer member_index) {
 		this.member_index = member_index;
 	}
-	public Timestamp getCompany_register_date() {
+	public LocalDateTime getCompany_register_date() {
 		return company_register_date;
 	}
-	public void setCompany_register_date(Timestamp company_register_date) {
+	public void setCompany_register_date(LocalDateTime company_register_date) {
 		this.company_register_date = company_register_date;
 	}
-	public Timestamp getCompany_modify_date() {
+	public LocalDateTime getCompany_modify_date() {
 		return company_modify_date;
 	}
-	public void setCompany_modify_date(Timestamp company_modify_date) {
+	public void setCompany_modify_date(LocalDateTime company_modify_date) {
 		this.company_modify_date = company_modify_date;
 	}
-	public Timestamp getCompany_delete_date() {
+	public LocalDateTime getCompany_delete_date() {
 		return company_delete_date;
 	}
-	public void setCompany_delete_date(Timestamp company_delete_date) {
+	public void setCompany_delete_date(LocalDateTime company_delete_date) {
 		this.company_delete_date = company_delete_date;
 	}
 }

@@ -1,6 +1,6 @@
 package kr.co.nexteer.domain;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class MemberVO {
 	private Integer member_index;
@@ -15,9 +15,9 @@ public class MemberVO {
 	private String[] member_authorities;
 	private String member_script1;
 	private String member_script2;
-	private Timestamp member_register_date;
-	private Timestamp member_modify_date;
-	private Timestamp member_delete_date;
+	private LocalDateTime member_register_date;
+	private LocalDateTime member_modify_date;
+	private LocalDateTime member_delete_date;
 	
 	public Integer getMember_index() {
 		return member_index;
@@ -91,22 +91,22 @@ public class MemberVO {
 	public void setMember_script2(String member_script2) {
 		this.member_script2 = member_script2;
 	}
-	public Timestamp getMember_register_date() {
+	public LocalDateTime getMember_register_date() {
 		return member_register_date;
 	}
-	public void setMember_register_date(Timestamp member_register_date) {
+	public void setMember_register_date(LocalDateTime member_register_date) {
 		this.member_register_date = member_register_date;
 	}
-	public Timestamp getMember_modify_date() {
+	public LocalDateTime getMember_modify_date() {
 		return member_modify_date;
 	}
-	public void setMember_modify_date(Timestamp member_modify_date) {
+	public void setMember_modify_date(LocalDateTime member_modify_date) {
 		this.member_modify_date = member_modify_date;
 	}
-	public Timestamp getMember_delete_date() {
+	public LocalDateTime getMember_delete_date() {
 		return member_delete_date;
 	}
-	public void setMember_delete_date(Timestamp member_delete_date) {
+	public void setMember_delete_date(LocalDateTime member_delete_date) {
 		this.member_delete_date = member_delete_date;
 	}	
 }

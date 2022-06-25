@@ -7,10 +7,9 @@
 			<button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">고객관리</button>
 			<div class="collapse show" id="home-collapse">
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					<li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(전체)</a></li>
-					<li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(제안서)</a></li>
-					<li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(견적서)</a></li>
-					<li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">고객목록조회(대표님)</a></li>
+					<li><a href="${pageContext.request.contextPath}/customer/getCustomerList" class="link-dark d-inline-flex text-decoration-none rounded">제안내역조회(전체)</a></li>
+					<li><a href="${pageContext.request.contextPath}/customer/getCustomerListOfJob1" class="link-dark d-inline-flex text-decoration-none rounded">제안내역조회(제안서)</a></li>
+					<li><a href="${pageContext.request.contextPath}/customer/getCustomerListOfJob2" class="link-dark d-inline-flex text-decoration-none rounded">제안내역조회(견적서)</a></li>
 				</ul>
 			</div>
 		</li>

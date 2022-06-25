@@ -1,6 +1,6 @@
 package kr.co.nexteer.domain;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class CalllogVO {
 	private Integer calllog_index;
@@ -9,8 +9,8 @@ public class CalllogVO {
 	private Integer company_customer_index;
 	private String calllog_call_date;
 	private String calllog_call_contents;
-	private Timestamp calllog_register_date;
-	private Timestamp calllog_modify_date;
+	private LocalDateTime calllog_register_date;
+	private LocalDateTime calllog_modify_date;
 	public Integer getCalllog_index() {
 		return calllog_index;
 	}
@@ -47,16 +47,16 @@ public class CalllogVO {
 	public void setCalllog_call_contents(String calllog_call_contents) {
 		this.calllog_call_contents = calllog_call_contents;
 	}
-	public Timestamp getCalllog_register_date() {
+	public LocalDateTime getCalllog_register_date() {
 		return calllog_register_date;
 	}
-	public void setCalllog_register_date(Timestamp calllog_register_date) {
+	public void setCalllog_register_date(LocalDateTime calllog_register_date) {
 		this.calllog_register_date = calllog_register_date;
 	}
-	public Timestamp getCalllog_modify_date() {
+	public LocalDateTime getCalllog_modify_date() {
 		return calllog_modify_date;
 	}
-	public void setCalllog_modify_date(Timestamp calllog_modify_date) {
+	public void setCalllog_modify_date(LocalDateTime calllog_modify_date) {
 		this.calllog_modify_date = calllog_modify_date;
 	}
 }

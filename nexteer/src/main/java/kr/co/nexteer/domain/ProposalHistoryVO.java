@@ -1,6 +1,6 @@
 package kr.co.nexteer.domain;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class ProposalHistoryVO {
 	private Integer proposal_history_index;
@@ -9,7 +9,10 @@ public class ProposalHistoryVO {
 	private Integer member_index;
 	private String proposal_history_job;
 	private String proposal_history_job_date;
-	private Timestamp proposal_history_register_date;
+	private String proposal_history_job_date1;
+	private String proposal_history_job_date2;
+	private String proposal_history_job_date3;
+	private LocalDateTime proposal_history_register_date;
 	public Integer getProposal_history_index() {
 		return proposal_history_index;
 	}
@@ -46,10 +49,28 @@ public class ProposalHistoryVO {
 	public void setProposal_history_job_date(String proposal_history_job_date) {
 		this.proposal_history_job_date = proposal_history_job_date;
 	}
-	public Timestamp getProposal_history_register_date() {
+	public String getProposal_history_job_date1() {
+		return proposal_history_job_date1;
+	}
+	public void setProposal_history_job_date1(String proposal_history_job_date1) {
+		this.proposal_history_job_date1 = proposal_history_job_date1;
+	}
+	public String getProposal_history_job_date2() {
+		return proposal_history_job_date2;
+	}
+	public void setProposal_history_job_date2(String proposal_history_job_date2) {
+		this.proposal_history_job_date2 = proposal_history_job_date2;
+	}
+	public String getProposal_history_job_date3() {
+		return proposal_history_job_date3;
+	}
+	public void setProposal_history_job_date3(String proposal_history_job_date3) {
+		this.proposal_history_job_date3 = proposal_history_job_date3;
+	}
+	public LocalDateTime getProposal_history_register_date() {
 		return proposal_history_register_date;
 	}
-	public void setProposal_history_register_date(Timestamp proposal_history_register_date) {
+	public void setProposal_history_register_date(LocalDateTime proposal_history_register_date) {
 		this.proposal_history_register_date = proposal_history_register_date;
 	}
 }

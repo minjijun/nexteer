@@ -1,5 +1,7 @@
 package kr.co.nexteer.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -355,11 +357,13 @@ public class ExcelService {
                 
                 //Z열(자료전달일자)
                 cell = row.getCell(25);
-                if(null != cell) {
+                String proposal_history_job_date = formatter.formatCellValue(cell).trim();
+                Integer company_customer_index = companyCustomerVO.getCompany_customer_index();
+                if(!proposal_history_job_date.equals("")) {
                 	ProposalHistoryVO proposalHistoryVO = new ProposalHistoryVO();
                 	proposalHistoryVO.setProposal_history_index(maxProposalHistoryIndex);
                 	proposalHistoryVO.setProposal_history_suggested_product(proposal_history_suggested_product);
-                	proposalHistoryVO.setCompany_customer_index(companyCustomerVO.getCompany_customer_index());
+                	proposalHistoryVO.setCompany_customer_index(company_customer_index);
                 	proposalHistoryVO.setMember_index(memberIndex);
                 	proposalHistoryVO.setProposal_history_job("제안서 메일 전송");
                 	proposalHistoryVO.setProposal_history_job_date(formatter.formatCellValue(cell));
@@ -369,11 +373,12 @@ public class ExcelService {
                 
                 //AB열(견적서발송일자)
                 cell = row.getCell(27);
-                if(null != cell) {
+                proposal_history_job_date = formatter.formatCellValue(cell).trim();
+                if(!proposal_history_job_date.equals("")) {
                 	ProposalHistoryVO proposalHistoryVO = new ProposalHistoryVO();
                 	proposalHistoryVO.setProposal_history_index(maxProposalHistoryIndex);
                 	proposalHistoryVO.setProposal_history_suggested_product(proposal_history_suggested_product);
-                	proposalHistoryVO.setCompany_customer_index(companyCustomerVO.getCompany_customer_index());
+                	proposalHistoryVO.setCompany_customer_index(company_customer_index);
                 	proposalHistoryVO.setMember_index(memberIndex);
                 	proposalHistoryVO.setProposal_history_job("견적서 메일 전송");
                 	proposalHistoryVO.setProposal_history_job_date(formatter.formatCellValue(cell));
@@ -385,32 +390,35 @@ public class ExcelService {
                 companyCustomerIndex = companyCustomerVO.getCompany_customer_index();
                 companyCustomerVO.setCompany_index(companyIndex);
                 
-                //AG열(4월 5일)
-                cell = row.getCell(32);
-                if(null != cell) {
-                	CalllogVO calllogVO = new CalllogVO();
-                	calllogVO.setCalllog_index(maxCalllogIndex);
-                	calllogVO.setCompany_index(companyIndex);
-                	calllogVO.setMember_index(memberIndex);
-                	calllogVO.setCompany_customer_index(companyCustomerIndex);
-                	calllogVO.setCalllog_call_date("20220405");
-                	calllogVO.setCalllog_call_contents(formatter.formatCellValue(cell));
-                	maxCalllogIndex = maxCalllogIndex + 1;
-                	listCalllogVO.add(calllogVO);
-                }
-                
-                //AH열(4월 6일)
-                cell = row.getCell(33);
-                if(null != cell) {
-                	CalllogVO calllogVO = new CalllogVO();
-                	calllogVO.setCalllog_index(maxCalllogIndex);
-                	calllogVO.setCompany_index(companyIndex);
-                	calllogVO.setMember_index(memberIndex);
-                	calllogVO.setCompany_customer_index(companyCustomerIndex);
-                	calllogVO.setCalllog_call_date("20220406");
-                	calllogVO.setCalllog_call_contents(formatter.formatCellValue(cell));
-                	maxCalllogIndex = maxCalllogIndex + 1;
-                	listCalllogVO.add(calllogVO);
+                //AG열(4월 5일)~DO열(6월 30일)
+                LocalDate ofDate = LocalDate.of(2022, 4, 5);
+                for(int j=32; j<=118; j++) {
+	                cell = row.getCell(j);
+	                String calllog_call_contents = formatter.formatCellValue(cell).trim();
+	                if(!calllog_call_contents.equals("")) {
+	                	CalllogVO calllogVO = new CalllogVO();
+	                	calllogVO.setCalllog_index(maxCalllogIndex);
+	                	calllogVO.setCompany_index(companyIndex);
+	                	calllogVO.setMember_index(memberIndex);
+	                	calllogVO.setCompany_customer_index(companyCustomerIndex);	                	
+	                	calllogVO.setCalllog_call_date(ofDate.format(DateTimeFormatter.ISO_DATE)); // LocalDate To String	                	
+	                	calllogVO.setCalllog_call_contents(calllog_call_contents);
+	                	
+	                	ProposalHistoryVO proposalHistoryVO = new ProposalHistoryVO();
+	                	proposalHistoryVO.setProposal_history_index(maxProposalHistoryIndex);
+	                	proposalHistoryVO.setProposal_history_suggested_product(proposal_history_suggested_product);
+	                	proposalHistoryVO.setCompany_customer_index(company_customer_index);
+	                	proposalHistoryVO.setMember_index(memberIndex);
+	                	proposalHistoryVO.setProposal_history_job("통화");
+	                	proposalHistoryVO.setProposal_history_job_date(ofDate.format(DateTimeFormatter.ISO_DATE));
+	                	
+	                	listCalllogVO.add(calllogVO);
+	                	listProposalHistoryVO.add(proposalHistoryVO);
+	                	
+	                	maxCalllogIndex = maxCalllogIndex + 1;
+	                	ofDate = ofDate.plusDays(1); // LocalDate + 1(내일)
+	                	maxProposalHistoryIndex = maxProposalHistoryIndex + 1;
+	                }
                 }
                 
                 listCompanyVO.add(companyVO);
