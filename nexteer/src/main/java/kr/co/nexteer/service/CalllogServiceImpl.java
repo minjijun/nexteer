@@ -21,7 +21,27 @@ public class CalllogServiceImpl implements CalllogService {
 	}
 
 	@Override
-	public void registerCalllogs(List<CalllogVO> listCalllogVO) {
-		calllogDAO.registerCalllogs(listCalllogVO);		
+	public void registerCalllog(CalllogVO callogVO) {
+		calllogDAO.registerCalllog(callogVO);
 	}
+	
+	@Override
+	public void registerCalllogs(List<CalllogVO> listCalllogVO) {
+		calllogDAO.registerCalllogs(listCalllogVO);
+	}
+
+	@Override
+	public List<CalllogVO> getCalllogList(Integer company_index) {
+		return calllogDAO.getCalllogList(company_index);
+	}
+
+	@Override
+	public CalllogVO getCalllog(Integer calllog_index) {
+		return calllogDAO.getCalllog(calllog_index);
+	}
+
+	@Override
+	public void updateCalllog(CalllogVO callogVO) {
+		calllogDAO.updateCalllog(callogVO);
+	}	
 }

@@ -6,6 +6,7 @@ public class CalllogVO {
 	private Integer calllog_index;
 	private Integer company_index;
 	private Integer member_index;
+	private String member_name;
 	private Integer company_customer_index;
 	private String calllog_call_date;
 	private String calllog_call_contents;
@@ -28,6 +29,12 @@ public class CalllogVO {
 	}
 	public void setMember_index(Integer member_index) {
 		this.member_index = member_index;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 	public Integer getCompany_customer_index() {
 		return company_customer_index;

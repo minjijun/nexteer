@@ -7,21 +7,9 @@
 		  from calllog
 	</select>
 	
-	<select id="getCompanyCount" parameterType="String" resultType="Integer">
-		select count(*)
-		  from company
-		 where company_business_number = #{company_business_number}
-	</select>
-	
-	<select id="geCompanytIndexByBusinessNumber" parameterType="String" resultType="Integer">
-		select company_index
-		  from company
-		 where company_business_number = #{company_business_number}
-	</select>
-	
-	<insert id="registerCompany">
-		insert into company(company_index, company_name, company_president, company_business_number, company_region, company_location, company_website, company_phone, company_fax, company_email, member_index, company_register_date)
-		values (#{company_index}, #{company_name}, #{company_president}, #{company_business_number}, #{company_region}, #{company_location}, #{company_website}, #{company_phone}, #{company_fax}, #{company_email}, #{member_index}, now())
+	<insert id="registerCalllog">
+		insert into calllog(calllog_index, company_index, member_index, company_customer_index, calllog_call_date, calllog_call_contents, calllog_register_date)
+		values (#{calllog_index}, #{company_index}, #{member_index}, #{company_customer_index}, #{calllog_call_date}, #{calllog_call_contents}, now())
 	</insert>
 	
 	<insert id="registerCalllogs" parameterType="java.util.List">
@@ -35,31 +23,24 @@
 			calllog_call_date = values(calllog_call_date), calllog_call_contents = values(calllog_call_contents), calllog_modify_date = now()
 	</insert>
 
-	<select id="getCompanyList" resultType="kr.co.nexteer.domain.CompanyVO">
-		select *
-		  from company
-		 where company_delete_date is null
-		 order by company_index
+	<select id="getCalllogList" parameterType="Integer" resultType="kr.co.nexteer.domain.CalllogVO">
+		select c.*, m.member_name
+		  from calllog c, member m
+		 where company_index = #{company_index}
+		   and c.member_index = m.member_index
+		 order by calllog_index desc
 	</select>
 	
-	<select id="getCompany" parameterType="Integer" resultType="kr.co.nexteer.domain.CompanyVO">
+	<select id="getCalllog" parameterType="Integer" resultType="kr.co.nexteer.domain.CalllogVO">
 		select *
-		  from company
-		 where company_index = #{company_index}
+		  from calllog
+		 where calllog_index = #{calllog_index}
 	</select>
 		
-	<update id="updateCompany">
-		update company
-		   set company_name = #{company_name}, company_president = #{company_president}, company_business_number = #{company_business_number},
-			   company_region = #{company_region}, company_location = #{company_location}, company_website = #{company_website},
-			   company_phone = #{company_phone}, company_fax = #{company_fax}, company_email = #{company_email},
-			   member_index = #{member_index}, company_modify_date = now()
-		 where company_index = #{company_index}
+	<update id="updateCalllog">
+		update calllog
+		   set company_customer_index = #{company_customer_index}, calllog_call_contents = #{calllog_call_contents}, calllog_modify_date = now()
+		 where calllog_index = #{calllog_index}
 	</update>
-	
-	<update id="deleteCompany" parameterType="Integer">
-		update company
-		   set company_delete_date = now()
-		 where company_index = #{company_index}
-	</update>
+
 </mapper>
