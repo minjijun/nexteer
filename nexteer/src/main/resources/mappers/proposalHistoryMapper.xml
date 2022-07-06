@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="registerProposalHistory">
-		insert into company(company_index, company_name, company_president, company_business_number, company_region, company_location, company_website, company_phone, company_fax, company_email, member_index, company_register_date)
-		values (#{company_index}, #{company_name}, #{company_president}, #{company_business_number}, #{company_region}, #{company_location}, #{company_website}, #{company_phone}, #{company_fax}, #{company_email}, #{member_index}, now())
+		insert into proposal_history(proposal_history_index, proposal_history_suggested_product, company_customer_index, member_index, proposal_history_job, proposal_history_job_date, proposal_history_register_date)
+		values (#{proposal_history_index}, #{proposal_history_suggested_product}, #{company_customer_index}, #{member_index}, #{proposal_history_job}, #{proposal_history_job_date}, now())
 	</insert>
 	
 	<insert id="registerProposalHistories" parameterType="java.util.List">
@@ -29,5 +29,15 @@
 		select *
 		  from proposal_history
 		 where proposal_history_index = #{proposal_history_index}
+	</select>
+	
+	<select id="getProposalHistoryByCompanyCustomerIndex" parameterType="Integer" resultType="kr.co.nexteer.domain.ProposalHistoryVO">
+		select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_index as company_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, "")) as proposal_history_job_date3
+				from proposal_history p, member m, company_customer c
+			   where p.member_index = m.member_index
+                 and p.company_customer_index = c.company_customer_index
+                 and p.company_customer_index = #{company_customer_index}
+                 and p.proposal_history_suggested_product = #{proposal_history_suggested_product}
+			  group by proposal_history_suggested_product, member_index, company_index, member_name
 	</select>
 </mapper>

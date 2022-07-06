@@ -34,13 +34,12 @@ public class CompanyCustomerServiceImpl implements CompanyCustomerService {
 
 	@Override
 	public void registerCompanyCustomers(List<CompanyCustomerVO> companyCustomerVO) {
-		companyCustomerDAO.registerCompanyCustomers(companyCustomerVO);		
+		companyCustomerDAO.registerCompanyCustomers(companyCustomerVO);	
 	}
 
 	@Override
-	public List<CompanyCustomerVO> getCompanyCustomerList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CompanyCustomerVO> getCompanyCustomerList(Integer company_index) {
+		return companyCustomerDAO.getCompanyCustomerList(company_index);
 	}
 
 	@Override
@@ -50,15 +49,8 @@ public class CompanyCustomerServiceImpl implements CompanyCustomerService {
 	}
 
 	@Override
-	public void updateCompanyCustomer(CompanyCustomerVO companyCustomerVO) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteCompanyCustomer(Integer company_customer_index) {
-		// TODO Auto-generated method stub
-
+	public void deleteCompanyCustomer(List<CompanyCustomerVO> listcompanyCustomerVO) {
+		companyCustomerDAO.deleteCompanyCustomer(listcompanyCustomerVO);
 	}
 
 }

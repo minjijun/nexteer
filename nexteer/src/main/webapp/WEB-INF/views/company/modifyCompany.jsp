@@ -24,7 +24,7 @@
 				<div class="form-group row mb-3">
            			<label for="company_name" class="col-md-3 col-form-label text-md-right">회사명</label>
            			<div class="col-md-6">
-            			<form:input path="company_name" class="form-control" id="name" placeholder="회사명을 입력하세요." required="true" />
+            			<form:input path="company_name" class="form-control" id="company_name" placeholder="회사명을 입력하세요." required="true" />
             		</div>
          		</div>
        			

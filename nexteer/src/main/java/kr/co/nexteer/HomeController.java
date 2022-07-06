@@ -21,35 +21,6 @@ import kr.co.nexteer.domain.MemberVO;
 @Controller
 public class HomeController {
 	
-	/*
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
-	}*/
-	
-	/**
-	 * 프로그램 시작
-	 * 로그인 안 한 경우 : 홈 화면에서 로그인 화면으로 이동(url 변경없음)
-	 * 로그인 한 경우 : 홈 화면에서 인덱스 화면으로 이동(url 변경)
-	 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(@ModelAttribute MemberVO memberVO) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/login"); //로그인 화면으로 이동
-		return mav;
-	}*/
-	
 	/**
 	 * 프로그램 시작
 	 * 로그인 안 한 경우 : 홈 화면에서 로그인 화면으로 이동(url 변경없음)

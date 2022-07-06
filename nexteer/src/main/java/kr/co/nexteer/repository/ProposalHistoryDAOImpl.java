@@ -24,13 +24,17 @@ public class ProposalHistoryDAOImpl implements ProposalHistoryDAO {
 
 	@Override
 	public void registerProposalHistory(ProposalHistoryVO proposalHistoryVO) {
-		// TODO Auto-generated method stub
-
+		sqlSession.insert(nameSpace+"registerProposalHistory", proposalHistoryVO);
 	}
 
 	@Override
 	public void registerProposalHistories(List<ProposalHistoryVO> listProposalHistoryVO) {
 		sqlSession.insert(nameSpace+"registerProposalHistories", listProposalHistoryVO);
+	}
+
+	@Override
+	public ProposalHistoryVO getProposalHistoryByCompanyCustomerIndex(ProposalHistoryVO proposalHistoryVO) {
+		return sqlSession.selectOne(nameSpace+"getProposalHistoryByCompanyCustomerIndex", proposalHistoryVO);
 	}
 
 	@Override

@@ -65,5 +65,10 @@ public class MemberServiceImpl implements MemberService {
 	public void deleteMember(Integer member_index) {
 		memberDAO.deleteMember(member_index);
 	}
+	
+	@Override
+	public void updateScript(MemberVO memberVO) {
+		memberDAO.updateScript(memberVO);
+	}
 
 }

@@ -81,16 +81,17 @@
 	<!-- Main -->
 	<div class="container-fluid">
 		<div class="row">
-			<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+			<nav id="sidebarMenu" class="col-lg-2 d-md-block bg-light sidebar collapse">
 				<jsp:include page="index_nav.jsp"/>
 			</nav>
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+			<main class="ms-sm-auto col-lg-10 px-md-4">
 				<jsp:include page="${main }"/>
 			</main>
 		</div>
 	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
 	<script src="/nexteer/resources/js/sidebars.js"></script>
 	<!-- Footer -->
 </body>

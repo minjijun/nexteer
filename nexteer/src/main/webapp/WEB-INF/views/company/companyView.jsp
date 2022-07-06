@@ -10,35 +10,35 @@
 			
 				<tr class="border-top border-white">
 					<th class="col-md-3">회사명</th>
-					<td class="">${companyVO.company_name}</td>
+					<td id="t_company_name" class="">${companyVO.company_name}</td>
 				</tr>
 				<tr>
 					<th>대표자명</th>
-					<td>${companyVO.company_president}</td>
+					<td id="t_company_president">${companyVO.company_president}</td>
 				</tr>
 				<tr>
 					<th>사업자등록번호</th>
-					<td>${companyVO.company_business_number}</td>
+					<td id="t_company_business_number">${companyVO.company_business_number}</td>
 				</tr>
 				<tr>
 					<th>사업장소재지</th>
-					<td>${companyVO.company_location}</td>
+					<td id="t_company_location">${companyVO.company_location}</td>
 				</tr>
 				<tr>
 					<th>홈페이지</th>
-					<td>${companyVO.company_website}</td>
+					<td id="t_company_website">${companyVO.company_website}</td>
 				</tr>
 				<tr>
 					<th>대표번호</th>
-					<td>${companyVO.company_phone}</td>
+					<td id="t_company_phone">${companyVO.company_phone}</td>
 				</tr>
 				<tr>
 					<th>팩스번호</th>
-					<td>${companyVO.company_phone}</td>
+					<td id="t_company_fax">${companyVO.company_fax}</td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td>${companyVO.company_phone}</td>
+					<td id="t_company_email">${companyVO.company_email}</td>
 				</tr>
 			  
 			</table>

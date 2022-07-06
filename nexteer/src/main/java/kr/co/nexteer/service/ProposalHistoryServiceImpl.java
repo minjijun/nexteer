@@ -21,6 +21,11 @@ public class ProposalHistoryServiceImpl implements ProposalHistoryService {
 	}
 
 	@Override
+	public ProposalHistoryVO getProposalHistoryByCompanyCustomerIndex(ProposalHistoryVO proposalHistoryVO) {
+		return proposalHistoryDAO.getProposalHistoryByCompanyCustomerIndex(proposalHistoryVO);
+	}
+
+	@Override
 	public void registerProposalHistory(ProposalHistoryVO proposalHistoryVO) {
 		proposalHistoryDAO.registerProposalHistory(proposalHistoryVO);
 	}

@@ -10,5 +10,6 @@ public interface ProposalHistoryDAO {
 	public void registerProposalHistories(List<ProposalHistoryVO> listProposalHistoryVO);
 	public List<ProposalHistoryVO> getProposalHistoryList();
 	public List<ProposalHistoryVO> getProposalHistoryListByMemberIndex();
+	public ProposalHistoryVO getProposalHistoryByCompanyCustomerIndex(ProposalHistoryVO proposalHistoryVO);
 	public ProposalHistoryVO getProposalHistory(Integer proposal_history_index);
 }

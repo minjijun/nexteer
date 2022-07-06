@@ -84,7 +84,6 @@ public class MemberController {
 	@RequestMapping(value="/member/checkId", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> checkId(String member_id) {
-		System.out.println("checkId");
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
 			Integer cnt = memberService.getIdCount(member_id); //DB에서 아이디 검색
@@ -109,7 +108,7 @@ public class MemberController {
 	 * registerMember.jsp에서 회원등록 버튼 클릭
 	 */
 	@RequestMapping(value="/member/registerMember", method=RequestMethod.POST)
-	public ModelAndView registerMember(MemberVO memberVO, HttpSession session) {
+	public ModelAndView registerMember(MemberVO memberVO, HttpSession session) throws Exception {
 		memberVO.setMember_index(memberService.getMemberIndex());
 		memberService.registerMember(memberVO); //DB에 삽입
 		session.setAttribute("MEMBER", memberVO);//세션에 멤버 객체 저장

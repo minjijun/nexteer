@@ -19,22 +19,22 @@
 					<input type="hidden" id="checkedBusinessNumber" value="False"/>
 						    				
 					<div class="form-group row mb-3">
-						<label for="company_name" class="col-md-3 col-form-label text-md-right">회사명</label>
+						<label for="company_name" class="col-md-3 col-form-label text-end">회사명</label>
 						<div class="col-md-6">
 							<form:input path="company_name" class="form-control" id="company_name" placeholder="회사명을 입력하세요." required="true" />
 						</div>
 					</div>
 	        			
 					<div class="form-group row mb-3">
-						<label for="company_president" class="col-md-3 col-form-label text-md-right">대표자명</label>
+						<label for="company_president" class="col-md-3 col-form-label text-end">대표자명</label>
 							<div class="col-md-6">
 								<form:input path="company_president" class="form-control" id="company_president" placeholder="대표자명을 입력하세요." />
 						</div>
 					</div>
 		        		
 	        		<div class="form-group row mb-3">
-	          			<label for="company_business_number" class="col-md-3 col-form-label text-md-right">사업자등록번호</label>
-	          			<div class="col-md-4">
+	          			<label for="company_business_number" class="col-md-3 col-form-label text-end">사업자등록번호</label>
+	          			<div class="col-md-5">
 		            		<form:input path="company_business_number" class="form-control" id="company_business_number" placeholder="사업자등록번호를 입력하세요." />
 		           		</div>
 		           		<div class="col-md-2">
@@ -43,51 +43,58 @@
 	        		</div>
         			
         			<div class="form-group row mb-3">
-            			<label for="company_location" class="col-md-3 col-form-label text-md-right">사업장소재지</label>
+            			<label for="company_location" class="col-md-3 col-form-label text-end">사업장소재지</label>
             			<div class="col-md-6">
 	            			<form:input path="company_location" class="form-control" id="company_location" placeholder="사업장소재지를 입력하세요." />
 	            		</div>
           			</div>
           			
           			<div class="form-group row mb-3">
-            			<label for="company_website" class="col-md-3 col-form-label text-md-right">홈페이지</label>
+            			<label for="company_website" class="col-md-3 col-form-label text-end">홈페이지</label>
             			<div class="col-md-6">
 	            			<form:input path="company_website" class="form-control" id="company_website" value="http://" placeholder="홈페이지를 입력하세요." />
 	            		</div>
           			</div>
           			
           			<div class="form-group row mb-3">
-            			<label for="company_phone" class="col-md-3 col-form-label text-md-right">대표번호</label>
+            			<label for="company_phone" class="col-md-3 col-form-label text-end">대표번호</label>
             			<div class="col-md-6">
 	            			<form:input path="company_phone" class="form-control" id="company_phone" placeholder="대표번호를 입력하세요." />
 	            		</div>
           			</div>
 					
 					<div class="form-group row mb-3">
-            			<label for="company_fax" class="col-md-3 col-form-label text-md-right">팩스번호</label>
+            			<label for="company_fax" class="col-md-3 col-form-label text-end">팩스번호</label>
             			<div class="col-md-6">
 	            			<form:input path="company_fax" class="form-control" id="company_fax" placeholder="팩스번호를 입력하세요." />
 	            		</div>
           			</div>
 	                    
                     <div class="form-group row mb-3">
-	                    <label for="company_email" class="col-md-3 col-form-label text-md-right">이메일</label>
+	                    <label for="company_email" class="col-md-3 col-form-label text-end">이메일</label>
 	                    <div class="col-md-6">
 	                    	<input type="email" name="company_email" id="company_email" class="form-control" placeholder="대표이메일을 입력하세요." />
 						</div>
 					</div>
 
 					<hr class="mb-3">
+					
+					<div class="form-group row mb-3 text-center">
+					
+					</div>
+					
+					<hr class="mb-3">
 				        
 					<div class="form-group row mb-3 text-center">
 						<div class="col-md-2"></div>
 						<div class="col-md-4">
-							<button class="btn btn-primary btn-sm btn-block" type="submit">회사 등록</button>
+							<button class="btn btn-primary btn-md btn-block" type="submit">회사 등록</button>
 						</div>
 						<div class="col-md-4">
-							<button id="reset" class="btn btn-primary btn-sm btn-block" type="reset">입력 취소</button>
+							<button id="reset" class="btn btn-primary btn-md btn-block" type="reset">입력 취소</button>
 						</div>
 					</div>
+
 	      		</form:form>
 	      		<!-- Register Form {e} -->
 			</div>

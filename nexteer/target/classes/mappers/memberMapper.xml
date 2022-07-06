@@ -60,4 +60,10 @@
 		update member set member_delete_date = now()
 		 where member_index = #{member_index}
 	</update>
+	
+	<update id="updateScript">
+		update member
+		   set member_script1 = #{member_script1}, member_script2 = #{member_script2}, member_modify_date = now()
+		 where member_index = #{member_index}
+	</update>
 </mapper>

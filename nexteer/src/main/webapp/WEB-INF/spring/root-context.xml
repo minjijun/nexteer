@@ -8,7 +8,7 @@
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="com.mysql.cj.jdbc.Driver"
-		p:url="jdbc:mysql://127.0.0.1:3306/nexteer"
+		p:url="jdbc:mysql://127.0.0.1:3306/nexteer?allowMultiQueries=true"
 		p:username="root"
 		p:password="!nexteer1">
 	</bean>

@@ -35,11 +35,12 @@
 			company_customer_email = values(company_customer_email), company_customer_status = values(company_customer_status), company_customer_modify_date = now(), company_customer_delete_date = null
 	</insert>
 
-	<select id="getCompanyList" resultType="kr.co.nexteer.domain.CompanyVO">
+	<select id="getCompanyCustomerList" parameterType="Integer" resultType="kr.co.nexteer.domain.CompanyCustomerVO">
 		select *
-		  from company
-		 where company_delete_date is null
-		 order by company_index
+		  from company_customer
+		 where company_customer_delete_date is null
+		   and company_index = #{company_index}
+		 order by company_customer_index desc
 	</select>
 	
 	<select id="getCompany" parameterType="Integer" resultType="kr.co.nexteer.domain.CompanyVO">
@@ -47,19 +48,13 @@
 		  from company
 		 where company_index = #{company_index}
 	</select>
-		
-	<update id="updateCompany">
-		update company
-		   set company_name = #{company_name}, company_president = #{company_president}, company_business_number = #{company_business_number},
-			   company_region = #{company_region}, company_location = #{company_location}, company_website = #{company_website},
-			   company_phone = #{company_phone}, company_fax = #{company_fax}, company_email = #{company_email},
-			   member_index = #{member_index}, company_modify_date = now()
-		 where company_index = #{company_index}
-	</update>
 	
-	<update id="deleteCompany" parameterType="Integer">
-		update company
-		   set company_delete_date = now()
-		 where company_index = #{company_index}
+	<update id="deleteCompanyCustomer" parameterType="java.util.List">
+		update company_customer
+		   set company_customer_delete_date = now()
+		 where company_customer_index in
+			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+				 #{item.company_customer_index}
+			</foreach>
 	</update>
 </mapper>

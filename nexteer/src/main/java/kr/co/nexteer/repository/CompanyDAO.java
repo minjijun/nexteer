@@ -1,6 +1,7 @@
 package kr.co.nexteer.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.nexteer.domain.CompanyVO;
 

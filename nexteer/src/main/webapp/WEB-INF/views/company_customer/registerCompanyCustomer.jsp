@@ -115,7 +115,7 @@
 	//사업자등록번호 중복검사 버튼 클릭 이벤트
 	$(document).on('click', '#checkBusinessNumber', function(e) {
 		var company_business_number = $("#company_business_number").val();
-		if(company_business_number == '') {
+		if(company_business_number == "") {
 			alert("사업자등록번호를 입력하세요.");
 			document.form.company_business_number.focus();
 			return;

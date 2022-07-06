@@ -15,4 +15,5 @@ public interface MemberService {
 	public MemberVO getMemberByIdPwd(MemberVO memberVO);
 	public void updateMember(MemberVO memberVO);
 	public void deleteMember(Integer member_index);
+	public void updateScript(MemberVO memberVO);
 }

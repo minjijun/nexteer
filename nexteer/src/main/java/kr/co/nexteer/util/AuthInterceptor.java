@@ -12,8 +12,7 @@ import org.springframework.web.servlet.mvc.WebContentInterceptor;
 public class AuthInterceptor extends WebContentInterceptor {
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws ServletException {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
 		System.out.println("Intercept : "+ request.getRequestURI());
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();

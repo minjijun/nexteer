@@ -28,8 +28,6 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(nameSpace+"getMemberIndexByMemberName", member_name);
 	}
 
-
-
 	@Override
 	public Integer getIdCount(String member_id) {
 		return sqlSession.selectOne(nameSpace+"getIdCount", member_id);
@@ -39,7 +37,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void registerMember(MemberVO memberVO) {
 		sqlSession.insert(nameSpace+"registerMember", memberVO);
 	}
-
+	
 	@Override
 	public List<MemberVO> getMemberList() {
 		return sqlSession.selectList(nameSpace+"getMemberList");
@@ -68,6 +66,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void deleteMember(Integer member_index) {
 		sqlSession.update(nameSpace+"deleteMember", member_index);
+	}
+	
+	@Override
+	public void updateScript(MemberVO memberV) {
+		sqlSession.update(nameSpace+"updateScript", memberV);
 	}
 
 }

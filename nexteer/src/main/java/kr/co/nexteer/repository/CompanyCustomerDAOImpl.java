@@ -1,6 +1,8 @@
 package kr.co.nexteer.repository;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -39,9 +41,8 @@ public class CompanyCustomerDAOImpl implements CompanyCustomerDAO {
 	}
 
 	@Override
-	public List<CompanyCustomerVO> getCompanyCustomerList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CompanyCustomerVO> getCompanyCustomerList(Integer company_index) {
+		return sqlSession.selectList(nameSpace+"getCompanyCustomerList", company_index);
 	}
 
 	@Override
@@ -51,15 +52,8 @@ public class CompanyCustomerDAOImpl implements CompanyCustomerDAO {
 	}
 
 	@Override
-	public void updateCompanyCustomer(CompanyCustomerVO companyCustomerVO) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteCompanyCustomer(Integer company_customer_index) {
-		// TODO Auto-generated method stub
-
+	public void deleteCompanyCustomer(List<CompanyCustomerVO> listcompanyCustomerVO) {
+		sqlSession.update(nameSpace+"deleteCompanyCustomer", listcompanyCustomerVO);
 	}
 
 }

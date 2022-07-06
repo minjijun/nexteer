@@ -3,6 +3,7 @@ package kr.co.nexteer.domain;
 import java.time.LocalDateTime;
 
 public class CompanyVO {
+	private Integer excel_row;
 	private Integer company_index;
 	private String company_name;
 	private String company_president;
@@ -18,6 +19,13 @@ public class CompanyVO {
 	private LocalDateTime company_modify_date;
 	private LocalDateTime company_delete_date;
 	
+	
+	public Integer getExcel_row() {
+		return excel_row;
+	}
+	public void setExcel_row(Integer excel_row) {
+		this.excel_row = excel_row;
+	}
 	public Integer getCompany_index() {
 		return company_index;
 	}

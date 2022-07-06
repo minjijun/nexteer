@@ -8,9 +8,8 @@
 
 <article>
    	<div class="container col-md-12" role="main">
- 		<div class="py-5 text-center">
+ 		<div class="py-4 text-center">
    			<h2>직원등록</h2>
-   			<p class="lead"></p>
  		</div>
   		<div class="card">
     		<div class="card-body">
@@ -20,59 +19,59 @@
 					<input type="hidden" id="checkedId" value="False"/>
 					    				
           			<div class="form-group row mb-3">
-            			<label for="member_name" class="col-md-3 col-form-label text-md-right">이름</label>
+            			<label for="member_name" class="col-md-3 col-form-label text-end">이름</label>
             			<div class="col-md-6">
 	            			<form:input path="member_name" class="form-control" id="member_name" placeholder="이름을 입력하세요." required="true" />
 	            		</div>
           			</div>
         			
         			<div class="form-group row mb-3">
-	          			<label for="member_id" class="col-md-3 col-form-label text-md-right">아이디</label>
+	          			<label for="member_id" class="col-md-3 col-form-label text-end">아이디</label>
 	          			<div class="col-md-4">
 		            		<form:input path="member_id" class="form-control" id="member_id" placeholder="아이디를 입력하세요." required="true" />
 		           		</div>
 		           		<div class="col-md-2">
-		           			<button type="button" id="checkId" class="btn btn-md btn-primary btn-block">중복검사</button>
+		           			<button type="button" id="checkId" class="btn btn-md btn-success btn-block">중복검사</button>
 		           		</div>
 	        		</div>
         			
         			<div class="form-group row mb-3">
-						<label for="member_pwd" class="col-md-3 col-form-label text-md-right">비빌번호</label>
+						<label for="member_pwd" class="col-md-3 col-form-label text-end">비빌번호</label>
 						<div class="col-md-6">
 							<form:password path="member_pwd" class="form-control" id="member_pwd" required="true" />
 						</div>
 					</div>
 					
 					<div class="form-group row mb-3">
-						<label for="pwdConfirm" class="col-md-3 col-form-label text-md-right">비밀번호 확인</label>
+						<label for="pwdConfirm" class="col-md-3 col-form-label text-end">비밀번호 확인</label>
 						<div class="col-md-6">
 							<input type="password" name="pwdConfirm" class="form-control" id="pwdConfirm" required="true" />
 						</div>
 					</div>
 					
 					<div class="form-group row mb-3">
-            			<label for="member_phone" class="col-md-3 col-form-label text-md-right">내선번호</label>
+            			<label for="member_phone" class="col-md-3 col-form-label text-end">내선번호</label>
             			<div class="col-md-6">
 	            			<form:input path="member_phone" class="form-control" id="member_phone" placeholder="내선번호를 입력하세요." />
 	            		</div>
           			</div>
 					
 					<div class="form-group row mb-3">
-						<label for="member_mobile" class="col-md-3 col-form-label text-md-right">휴대폰</label>
+						<label for="member_mobile" class="col-md-3 col-form-label text-end">휴대폰</label>
             			<div class="col-md-6">
 	            			<form:input path="member_mobile" class="form-control" id="member_mobile" placeholder="휴대폰번호를 입력하세요." />
 	            		</div>
                     </div>
                     
                     <div class="form-group row mb-3">
-	                    <label for="email" class="col-md-3 col-form-label text-md-right">이메일</label>
+	                    <label for="email" class="col-md-3 col-form-label text-end">이메일</label>
 	                    <div class="col-md-6">
 		                    <input type="email" name="member_email" id="member_email" class="form-control" placeholder="you@nexteer.co.kr" />
 						</div>
 					</div>
 					
 					<div class="form-group row mb-3">
-						<label for="member_position" class="col-md-3 col-form-label text-md-right">직급</label>
+						<label for="member_position" class="col-md-3 col-form-label text-end">직급</label>
 						<div class="col-md-6">
 							<form:select path="member_position" id="member_position" class="form-control">
 								<option value="">--선택해주세요--</option>
@@ -84,8 +83,8 @@
                     </div>
 					
 					<div class="form-group row mb-3">
-						<label for="member_authority" class="col-md-3 col-form-label text-md-right">권한</label>
-						<div class="col-md-6">
+						<label for="member_authority" class="col-md-3 col-form-label text-end">권한</label>
+						<div class="col-md-6 g-3">
 							<form:checkbox path="member_authorities" value="C" label="등록" class="form-check-input"/>
 							<form:checkbox path="member_authorities" value="R" label="조회" class="form-check-input"/>                   
 							<form:checkbox path="member_authorities" value="U" label="수정" class="form-check-input"/>
@@ -95,13 +94,14 @@
 			        <hr class="mb-3">
 			        
 			        <div class="form-group row mb-3 text-center">
-			        	<div class="col-md-2">
+			        	<div class="col-md-4">
 			        	</div>
 				        <div class="col-md-4">
 				        	<button class="btn btn-success btn-md btn-block" type="submit">직원등록</button>
+				        	<button id="reset" class="btn btn-success btn-md btn-block" type="reset">입력취소</button>
 				        </div>
 				        <div class="col-md-4">
-				        	<button id="reset" class="btn btn-success btn-md btn-block" type="reset">입력취소</button>
+				        	
 				        </div>
 			        </div>
       			</form:form>

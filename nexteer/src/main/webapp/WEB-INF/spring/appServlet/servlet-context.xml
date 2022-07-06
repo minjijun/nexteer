@@ -32,5 +32,28 @@
     
     <!-- @Controller @Repository @Service 객체가 저장되어 있는 package 이름 -->
     <context:component-scan base-package="kr.co.*" />
+    
+    <interceptors>
+		<beans:bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<beans:property name="cacheSeconds" value="0" />
+			<beans:property name="useExpiresHeader" value="true" />
+			<beans:property name="useCacheControlHeader" value="true" />
+			<beans:property name="useCacheControlNoStore" value="true" />
+		</beans:bean>
+	</interceptors>
+	
+	<interceptors>
+		<interceptor>
+ 			<!-- 모든 요청을 컨트롤러 가기 전에 가로챈다 -->
+			<mapping path="/**" />
+ 			<!-- 가로채기를 제외할 URI  -->
+ 			<exclude-mapping path="/" />
+ 			<exclude-mapping path="/login" />
+ 			<!-- 이미지, 자바스크립트, CSS가 적용되지 않을 때 다음 추가 -->
+			<exclude-mapping path="/resources/**"/>		
+ 			<!-- 가로챘을 때 처리할 패키지.클래스명 -->
+			<beans:bean class="kr.co.nexteer.util.AuthInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

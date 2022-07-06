@@ -2,6 +2,7 @@ package kr.co.nexteer.service;
 
 import java.util.List;
 
+import kr.co.nexteer.domain.CalllogVO;
 import kr.co.nexteer.domain.CustomerVO;
 
 public interface CustomerService {
@@ -9,4 +10,5 @@ public interface CustomerService {
 	public List<CustomerVO> getCustomerListOfJob1();
 	public List<CustomerVO> getCustomerListOfJob2();
 	public List<CustomerVO> getCustomerListByMemberIndex(Integer member_index);
+	public List<CustomerVO> getCustomer(CalllogVO calllogVO);
 }

@@ -62,7 +62,9 @@
 				
 				<div class="form-group row mb-3">
 					<label for="member_mobile" class="col-md-3 col-form-label text-md-right">휴대폰</label>
-					<form:input path="member_mobile" class="form-control" id="mobile" placeholder="휴대폰번호를 입력하세요." required="true" maxLength="30" />
+					<div class="col-md-6">
+						<form:input path="member_mobile" class="form-control" id="mobile" placeholder="휴대폰번호를 입력하세요." required="true" maxLength="30" />
+					</div>
 				</div>
 	                  
 				<div class="form-group row mb-3">

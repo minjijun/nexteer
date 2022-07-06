@@ -16,6 +16,8 @@ public class CompanyCustomerVO {
 	private LocalDateTime company_customer_delete_date;
 	private String company_name;
 	private String company_business_number;
+	private Integer index;
+	private boolean state;
 	
 	public Integer getCompany_customer_index() {
 		return company_customer_index;
@@ -94,5 +96,17 @@ public class CompanyCustomerVO {
 	}
 	public void setCompany_business_number(String company_business_number) {
 		this.company_business_number = company_business_number;
+	}
+	public Integer getIndex() {
+		return index;
+	}
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
+	public boolean isState() {
+		return state;
+	}
+	public void setState(boolean state) {
+		this.state = state;
 	}
 }

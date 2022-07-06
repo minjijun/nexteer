@@ -10,6 +10,8 @@
 	<insert id="registerCalllog">
 		insert into calllog(calllog_index, company_index, member_index, company_customer_index, calllog_call_date, calllog_call_contents, calllog_register_date)
 		values (#{calllog_index}, #{company_index}, #{member_index}, #{company_customer_index}, #{calllog_call_date}, #{calllog_call_contents}, now())
+		ON DUPLICATE KEY UPDATE <!-- PK가 중복이면 UPDATE -->
+			calllog_call_contents = values(calllog_call_contents), calllog_modify_date = now()
 	</insert>
 	
 	<insert id="registerCalllogs" parameterType="java.util.List">

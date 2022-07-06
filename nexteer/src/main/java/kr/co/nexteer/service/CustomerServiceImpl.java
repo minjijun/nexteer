@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.nexteer.domain.CalllogVO;
 import kr.co.nexteer.domain.CustomerVO;
 import kr.co.nexteer.repository.CustomerDAO;
 
@@ -35,4 +36,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDAO.getCustomerListByMemberIndex(member_index);
 	}
 
+	@Override
+	public List<CustomerVO> getCustomer(CalllogVO calllogVO) {
+		return customerDAO.getCustomer(calllogVO);
+	}
+	
 }

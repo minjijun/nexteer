@@ -9,8 +9,7 @@ public interface CompanyCustomerService {
 	public Integer getCompanyCustomerCount(Integer company_customer_index, String company_customer_name);
 	public void registerCompanyCustomer(CompanyCustomerVO companyCustomerVO);
 	public void registerCompanyCustomers(List<CompanyCustomerVO> companyCustomerVO);
-	public List<CompanyCustomerVO> getCompanyCustomerList();
+	public List<CompanyCustomerVO> getCompanyCustomerList(Integer company_index);
 	public CompanyCustomerVO getCompanyCustomer(Integer company_customer_index);
-	public void updateCompanyCustomer(CompanyCustomerVO companyCustomerVO);
-	public void deleteCompanyCustomer(Integer company_customer_index);
+	public void deleteCompanyCustomer(List<CompanyCustomerVO> listcompanyCustomerVO);
 }

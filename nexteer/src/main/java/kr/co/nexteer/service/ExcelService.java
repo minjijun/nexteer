@@ -3,7 +3,10 @@ package kr.co.nexteer.service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -254,7 +257,8 @@ public class ExcelService {
     	//List<ProposalHistoryVO> listProposalHistoryVO = new ArrayList<ProposalHistoryVO>();
     	ExcelVO excelVO = new ExcelVO();
     	DataFormatter formatter = new DataFormatter();
-    	
+    	List<CompanyVO> listOfDuplication = new ArrayList<CompanyVO>();
+
         try {
             OPCPackage opcPackage = OPCPackage.open(excelFile.getInputStream());
             XSSFWorkbook workbook = new XSSFWorkbook(opcPackage);
@@ -274,7 +278,8 @@ public class ExcelService {
             	Integer memberIndex = 0;
             	Integer companyIndex;
             	Integer companyCustomerIndex;
-            	CompanyVO companyVO = new CompanyVO();            	
+            	CompanyVO companyVO = new CompanyVO();
+            	Map<Integer,CompanyVO> mapOfcompanyVO = new HashMap<Integer,CompanyVO>();         	
             	CompanyCustomerVO companyCustomerVO = new CompanyCustomerVO();
             	
             	String proposal_history_suggested_product = null;
@@ -340,12 +345,41 @@ public class ExcelService {
                 
                 String company_business_number = companyVO.getCompany_business_number();
                 Integer count = companyService.getCompanyCount(company_business_number);
+                boolean flag = true;
                 if(count > 0) {
-                	companyVO.setCompany_index(companyService.getCompanytIndexByBusinessNumber(company_business_number));
+                	//System.out.println("DB에 사업자등록번호가 중복된 것이 있는 경우");
+            		//mapOfDuplication.put(i, companyVO);
+                	companyVO.setExcel_row(i+1);
+                	listOfDuplication.add(companyVO);
+            		continue;
                 } else {
-                	companyVO.setCompany_index(maxCompanyIndex);
-                	maxCompanyIndex = maxCompanyIndex + 1;
-                }
+	            	if(listOfDuplication.contains((Object)company_business_number)) {
+	            		//System.out.println("중복리스트에 사업자등록번호가 중복된 것이 있는 경우");
+	            		//mapOfDuplication.put(i, companyVO);
+	            		companyVO.setExcel_row(i+1);
+	                	listOfDuplication.add(companyVO);
+	            		continue;
+	            	} else {
+	            		Iterator<CompanyVO> iterator = listCompanyVO.iterator();
+	            		while(iterator.hasNext()) {
+	            			if(iterator.next().getCompany_business_number().equals(company_business_number)) {
+	                			//System.out.println("리스트에 사업자등록번호가 중복된 것이 있는 경우");
+	                			//mapOfDuplication.put(i, companyVO);
+	            				companyVO.setExcel_row(i+1);
+	    	                	listOfDuplication.add(companyVO);
+	                			flag = false;
+	                			break;
+	                		}
+	            		}
+	            		
+	            		if(flag == false) continue;
+	            		else {
+	            			//System.out.println("리스트에 사업자등록번호가 중복된 것이 없는 경우");
+		                	companyVO.setCompany_index(maxCompanyIndex);
+		                	maxCompanyIndex = maxCompanyIndex + 1;
+	            		}
+	            	}	            	
+                }                
                 
                 //T열(지역)
                 cell = row.getCell(19);
@@ -425,10 +459,11 @@ public class ExcelService {
                 listCompanyCustomerVO.add(companyCustomerVO);
             }
             
-            excelVO.setCompanyVO(listCompanyVO);
+            excelVO.setListCompanyVO(listCompanyVO);
             excelVO.setCompanyCustomerVO(listCompanyCustomerVO);
             excelVO.setProposalHistoryVO(listProposalHistoryVO);
             excelVO.setCalllogVO(listCalllogVO);
+            excelVO.setListOfDuplication(listOfDuplication);
             
         } catch (Exception e) {
             e.printStackTrace();

@@ -16,36 +16,67 @@
 		<id column="company_customer_phone" property="company_customer_phone" />
 		<id column="company_customer_email" property="company_customer_email" />
 		<id column="company_location" property="company_location" />
+		<id column="company_region" property="company_region" />
 		<id column="company_business_number" property="company_business_number" />
 	</resultMap>
-
-	<select id="getCustomerList" resultMap="customerMap">
+	
+	<!-- criteria(검색조건) -->
+	<sql id="criteria1">
+		<trim prefix="AND ">
+			<choose>
+				<when test="type == 'A'.toString()">
+					c.company_name like concat ('%', #{keyword}, '%')
+				</when>
+				<when test="type == 'B'.toString()">
+					cc.company_customer_name like concat ('%', #{keyword}, '%')
+				</when>
+			</choose>
+		</trim>
+	</sql>
+	
+	<sql id="criteria2">
+		<trim prefix="AND ">
+			<choose>
+				<when test="filter_type == ''">
+					ph.member_index = #{filter}
+				</when>
+			</choose>
+		</trim>
+	</sql>
+	
+	<select id="getCustomerList" parameterType="kr.co.nexteer.domain.Criteria" resultMap="customerMap">
 		select c.company_index, c.company_name, ph.member_index, ph.member_name, cc.company_customer_name, cc.company_customer_position,
 			   ph.proposal_history_suggested_product,ph.proposal_history_job_date1, ph.proposal_history_job_date2, ph.proposal_history_job_date3,
-			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_business_number
+			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_region, c.company_business_number
 		 from company c,
 			  company_customer cc,
-		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_customer_index as company_customer_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, null)) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, null)) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, null)) as proposal_history_job_date3
-				from proposal_history p, member m
+		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_index as company_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, "")) as proposal_history_job_date3
+				from proposal_history p, member m, company_customer c
 			   where p.member_index = m.member_index
-			  group by proposal_history_suggested_product, member_index, company_customer_index, member_name) ph
+                 and p.company_customer_index = c.company_customer_index
+			  group by proposal_history_suggested_product, member_index, company_index, member_name) ph
 		where c.company_index = cc.company_index
-		  and cc.company_customer_index = ph.company_customer_index
+          and c.company_index = ph.company_index
+		  and (c.company_index, cc.company_customer_index) in (select company_index, max(company_customer_index) from company_customer group by company_index)
+		  <include refid="criteria1"></include>
+		  <include refid="criteria2"></include>
 		order by c.company_index
 	</select>
 
 	<select id="getCustomerListOfJob1" resultMap="customerMap">
 		select c.company_index, c.company_name, ph.member_index, ph.member_name, cc.company_customer_name, cc.company_customer_position,
 			   ph.proposal_history_suggested_product,ph.proposal_history_job_date1, ph.proposal_history_job_date2, ph.proposal_history_job_date3,
-			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_business_number
+			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_region, c.company_business_number
 		 from company c,
 			  company_customer cc,
-		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_customer_index as company_customer_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, null)) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, null)) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, null)) as proposal_history_job_date3
-				from proposal_history p, member m
+		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_index as company_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, "")) as proposal_history_job_date3
+				from proposal_history p, member m, company_customer c
 			   where p.member_index = m.member_index
-			  group by proposal_history_suggested_product, member_index, company_customer_index, member_name) ph
+                 and p.company_customer_index = c.company_customer_index
+			  group by proposal_history_suggested_product, member_index, company_index, member_name) ph
 		where c.company_index = cc.company_index
-		  and cc.company_customer_index = ph.company_customer_index
+          and c.company_index = ph.company_index
+		  and (c.company_index, cc.company_customer_index) in (select company_index, max(company_customer_index) from company_customer group by company_index)
 		  and ph.proposal_history_job_date1 is not null
 		order by c.company_index
 	</select>
@@ -53,15 +84,17 @@
 	<select id="getCustomerListOfJob2" resultMap="customerMap">
 		select c.company_index, c.company_name, ph.member_index, ph.member_name, cc.company_customer_name, cc.company_customer_position,
 			   ph.proposal_history_suggested_product,ph.proposal_history_job_date1, ph.proposal_history_job_date2, ph.proposal_history_job_date3,
-			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_business_number
+			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_region, c.company_business_number
 		 from company c,
 			  company_customer cc,
-		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_customer_index as company_customer_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, null)) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, null)) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, null)) as proposal_history_job_date3
-				from proposal_history p, member m
+		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_index as company_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, "")) as proposal_history_job_date3
+				from proposal_history p, member m, company_customer c
 			   where p.member_index = m.member_index
-			  group by proposal_history_suggested_product, member_index, company_customer_index, member_name) ph
+                 and p.company_customer_index = c.company_customer_index
+			  group by proposal_history_suggested_product, member_index, company_index, member_name) ph
 		where c.company_index = cc.company_index
-		  and cc.company_customer_index = ph.company_customer_index
+          and c.company_index = ph.company_index
+		  and (c.company_index, cc.company_customer_index) in (select company_index, max(company_customer_index) from company_customer group by company_index)
 		  and ph.proposal_history_job_date2 is not null
 		order by c.company_index
 	</select>
@@ -69,16 +102,37 @@
 	<select id="getCustomerListByMemberIndex" parameterType="Integer" resultMap="customerMap">
 		select c.company_index, c.company_name, ph.member_index, ph.member_name, cc.company_customer_name, cc.company_customer_position,
 			   ph.proposal_history_suggested_product,ph.proposal_history_job_date1, ph.proposal_history_job_date2, ph.proposal_history_job_date3,
-			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_business_number
+			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_region, c.company_business_number
 		 from company c,
 			  company_customer cc,
-		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_customer_index as company_customer_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, null)) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, null)) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, null)) as proposal_history_job_date3
-				 from proposal_history p, member m
-	   			where p.member_index = m.member_index
-	  			group by proposal_history_suggested_product, member_index, company_customer_index, member_name) ph
+		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_index as company_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, "")) as proposal_history_job_date3
+				from proposal_history p, member m, company_customer c
+			   where p.member_index = m.member_index
+                 and p.company_customer_index = c.company_customer_index
+			  group by proposal_history_suggested_product, member_index, company_index, member_name) ph
 		where c.company_index = cc.company_index
-		  and cc.company_customer_index = ph.company_customer_index
+          and c.company_index = ph.company_index
+		  and (c.company_index, cc.company_customer_index) in (select company_index, max(company_customer_index) from company_customer group by company_index)
 		  and ph.member_index = #{member_index}
+		order by c.company_index
+	</select>
+	
+	<select id="getCustomer" parameterType="kr.co.nexteer.domain.CalllogVO" resultMap="customerMap">
+		select c.company_index, c.company_name, ph.member_index, ph.member_name, cc.company_customer_name, cc.company_customer_position,
+			   ph.proposal_history_suggested_product,ph.proposal_history_job_date1, ph.proposal_history_job_date2, ph.proposal_history_job_date3,
+			   cc.company_customer_phone, cc.company_customer_email, c.company_location, c.company_region, c.company_business_number
+		 from company c,
+			  company_customer cc,
+		      (select proposal_history_suggested_product as proposal_history_suggested_product, p.member_index as member_index, member_name as member_name, company_index as company_index, max(if(proposal_history_job = "제안서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date1, max(if(proposal_history_job = "견적서 메일 전송", proposal_history_job_date, "")) as proposal_history_job_date2, max(if(proposal_history_job = "통화", proposal_history_job_date, "")) as proposal_history_job_date3
+				from proposal_history p, member m, company_customer c
+			   where p.member_index = m.member_index
+                 and p.company_customer_index = c.company_customer_index
+			  group by proposal_history_suggested_product, member_index, company_index, member_name) ph
+		where c.company_index = cc.company_index
+          and c.company_index = ph.company_index
+		  and (c.company_index, cc.company_customer_index) in (select company_index, max(company_customer_index) from company_customer group by company_index)
+		  and c.company_index = ${company_index}
+		  and ph.member_index = ${member_index}
 		order by c.company_index
 	</select>
 

@@ -1,17 +1,21 @@
 package kr.co.nexteer.domain;
 
 import java.util.List;
+import java.util.Map;
 
 public class ExcelVO {
-	private List<CompanyVO> companyVO;
+	private List<CompanyVO> listCompanyVO;
 	private List<CompanyCustomerVO> companyCustomerVO;
 	private List<CalllogVO> calllogVO;
 	private List<ProposalHistoryVO> proposalHistoryVO;
-	public List<CompanyVO> getCompanyVO() {
-		return companyVO;
+	private Map<Integer, CompanyVO> mapOfDuplication;
+	private List<CompanyVO> listOfDuplication;
+	
+	public List<CompanyVO> getListCompanyVO() {
+		return listCompanyVO;
 	}
-	public void setCompanyVO(List<CompanyVO> companyVO) {
-		this.companyVO = companyVO;
+	public void setListCompanyVO(List<CompanyVO> listCompanyVO) {
+		this.listCompanyVO = listCompanyVO;
 	}
 	public List<CompanyCustomerVO> getCompanyCustomerVO() {
 		return companyCustomerVO;
@@ -31,4 +35,17 @@ public class ExcelVO {
 	public void setProposalHistoryVO(List<ProposalHistoryVO> proposalHistoryVO) {
 		this.proposalHistoryVO = proposalHistoryVO;
 	}
+	public Map<Integer, CompanyVO> getMapOfDuplication() {
+		return mapOfDuplication;
+	}
+	public void setMapOfDuplication(Map<Integer, CompanyVO> mapOfDuplication) {
+		this.mapOfDuplication = mapOfDuplication;
+	}
+	public List<CompanyVO> getListOfDuplication() {
+		return listOfDuplication;
+	}
+	public void setListOfDuplication(List<CompanyVO> listOfDuplication) {
+		this.listOfDuplication = listOfDuplication;
+	}
+	
 }
