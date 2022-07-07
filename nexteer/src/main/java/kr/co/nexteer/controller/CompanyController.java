@@ -50,9 +50,6 @@ public class CompanyController {
 				result.put("dup","YES");//사업자등록번호 중복
 				result.put("status", "False");
 			}				
-		} catch(DataIntegrityViolationException e) {//사업자등록번호 중복
-			result.put("dup", "YES");
-			result.put("status", "False");
 		} catch (Exception e) {
 			result.put("status", "False");
 		}

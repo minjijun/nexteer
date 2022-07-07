@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="d-flex flex-column pt-3 flex-shrink-0 p-3">
+<div class="position-sticky pt-3 flex-shrink-0 p-3">
 	<ul class="list-unstyled ps-0">
 		<li class="mb-1 mt-3">
 			<button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">고객관리</button>
