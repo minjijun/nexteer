@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/*
+html, body, main {
+	height: 100%;
+}*/
+
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -10,11 +15,21 @@ html {
 }
 
 main {
-  height: 100vh;
-  height: -webkit-fill-available;
+  height: 93vh;
+  /*height: -webkit-fill-available;
   max-height: 100vh;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: hidden;*/
+}
+
+.h {
+	height: 100vh;
+  	height: -webkit-fill-available;
+}
+
+.mh {
+	min-height: 100vh;
+  	min-height: -webkit-fill-available;
 }
 
 .dropdown-toggle { outline: 0; }

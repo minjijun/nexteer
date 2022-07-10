@@ -353,7 +353,6 @@ fullscreenModal.addEventListener('closed.bs.alert', event => {
 const companyModalEL = document.getElementById('companyModal')
 companyModalEL.addEventListener('show.bs.modal', event => {
 	var company_index = localStorage.getItem("company_index")
-	alert("2:"+company_index)
 	var paramData = { "company_index" : company_index };
 
 	$.ajax({

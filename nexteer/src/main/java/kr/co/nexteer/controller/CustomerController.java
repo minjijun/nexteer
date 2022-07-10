@@ -64,6 +64,7 @@ public class CustomerController {
 	/**
 	 * index.jsp의 sidebar에서 고객목록조회(전체) 메뉴를 클릭
 	 */
+	/*
 	@RequestMapping(value="/customer/getCustomerList", method=RequestMethod.GET)
 	public ModelAndView getCompanyList(@ModelAttribute CustomerVO customerVO, String main) throws Exception {
 		ModelAndView mav = new ModelAndView("index");
@@ -72,6 +73,25 @@ public class CustomerController {
 		mav.addObject("listCustomerVO", listCustomerVO);
 		mav.addObject("main", "customer/customerList.jsp");
 		return mav;
+	}*/
+	@RequestMapping(value="/customer/getCustomerListUI", method=RequestMethod.GET)
+	public ModelAndView getCustomerListUI(@ModelAttribute CustomerVO customerVO, String main) throws Exception {
+		ModelAndView mav = new ModelAndView("index");
+		mav.addObject("main", "customer/customerTable.jsp");
+		return mav;
+	}
+	
+	@RequestMapping(value="/customer/getCustomerList", method= {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public Map<String, Object> getCustomerList(HttpServletRequest request) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		try {
+			result.put("rows", customerService.getCustomerList());
+			result.put("listMemberVO", memberService.getMemberList());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	/**
@@ -98,11 +118,11 @@ public class CustomerController {
 	
 	@RequestMapping(value="/customer/getCustomer", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> getCustomer(Integer company_index, Integer member_index) throws Exception {
+	public Map<String, Object> getCustomer(Integer company_index, String member_name) throws Exception {
 		Map<String, Object> result = new HashMap<String, Object>();
 		CalllogVO calllogVO = new CalllogVO();
 		calllogVO.setCompany_index(company_index);
-		calllogVO.setMember_index(member_index);
+		calllogVO.setMember_index(memberService.getMemberIndexByMemberName(member_name));
 		try {
 			result.put("listCompanyCustomerVO", companyCustomerService.getCompanyCustomerList(company_index));
 			result.put("customerVO", customerService.getCustomer(calllogVO));

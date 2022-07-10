@@ -59,7 +59,7 @@
           and c.company_index = ph.company_index
 		  and (c.company_index, cc.company_customer_index) in (select company_index, max(company_customer_index) from company_customer group by company_index)
 		  <include refid="criteria1"></include>
-		  <include refid="criteria2"></include>
+		  <include refid="criteria2"></include>		  
 		order by c.company_index
 	</select>
 
@@ -77,7 +77,7 @@
 		where c.company_index = cc.company_index
           and c.company_index = ph.company_index
 		  and (c.company_index, cc.company_customer_index) in (select company_index, max(company_customer_index) from company_customer group by company_index)
-		  and ph.proposal_history_job_date1 is not null
+		  and ph.proposal_history_job_date1 != ""
 		order by c.company_index
 	</select>
 	
@@ -95,7 +95,7 @@
 		where c.company_index = cc.company_index
           and c.company_index = ph.company_index
 		  and (c.company_index, cc.company_customer_index) in (select company_index, max(company_customer_index) from company_customer group by company_index)
-		  and ph.proposal_history_job_date2 is not null
+		  and ph.proposal_history_job_date2 != ""
 		order by c.company_index
 	</select>
 		

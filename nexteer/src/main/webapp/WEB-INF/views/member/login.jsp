@@ -67,7 +67,7 @@
 		</style>
 			
 		<!-- Bootstrap CSS : Signin -->
- 		<link rel="stylesheet" href="/nexteer/resources/css/signin.css" type="text/css">
+ 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signin.css" type="text/css">
  				
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -79,7 +79,7 @@
 		
 			<!-- login Form {s} -->
 			<form:form method="post" modelAttribute="memberVO" action="${pageContext.request.contextPath}/login">
-				<img class="mb-4" src="/nexteer/resources/image/logo.png" alt="" weight="166" height="39">
+				<img class="mb-4" src="${pageContext.request.contextPath}/resources/image/logo.png" alt="" weight="166" height="39">
 				<h1 class="h5 mb-3 fw-normal">로그인 하세요.</h1>
 				<p>
 					<font color="#ed1d24">

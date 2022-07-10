@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE html>
-
 <c:url var="registerCalllogURL" value="registerCalllog1"></c:url>
 <c:url var="updateScriptURL" value="updateScript"></c:url>
 <c:url var="registerProposalHistoryURL" value="registerProposalHistory"></c:url>
@@ -111,10 +109,10 @@
 		
 		<div class="tab-content" id="myTabContent">
 		  <div class="tab-pane fade show active" id="member_script1-tab-pane" role="tabpanel" aria-labelledby="member_script1-tab" tabindex="0">
-				<textarea id="member_script1" name="content" cols="100" rows="15" class="form-control editor"></textarea>
+				<textarea id="member_script1" name="content" cols="100" rows="15" class="form-control"></textarea>
 		  </div>
 		  <div class="tab-pane fade" id="member_script2-tab-pane" role="tabpanel" aria-labelledby="member_script2-tab" tabindex="0">
-		  		<textarea id="member_script2" name="content" cols="100" rows="15" class="form-control editor"></textarea>
+		  		<textarea id="member_script2" name="content" cols="100" rows="15" class="form-control"></textarea>
 		  </div>
 		</div>
     </div>
@@ -126,7 +124,6 @@
 
 <!-- <script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js" type="text/javascript"></script> -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script src="/nexteer/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	var today = "";
 	var yymmdd = new Date();
